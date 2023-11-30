@@ -4,3 +4,21 @@
 Button.-primary {
   font-size: 18;
 }
+
+GridLayout {
+  background-image: ~/images/gradient.png;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+FlexBoxLayout {
+  background-image: ~/images/gradient.png;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.input-border:focus {
+  border-color: #734b34ff;
+}
