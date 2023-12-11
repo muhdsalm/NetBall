@@ -14,7 +14,9 @@
     "@angular/router": "~16.2.0",
     "@nativescript/angular": "^16.0.0",
     "@nativescript/core": "~8.6.0",
+    "@nativescript/schematics": "^11.2.0",
     "@nativescript/theme": "~3.0.2",
+    "nativescript-angular-cli": "^0.1.9",
     "rxjs": "~7.8.0",
     "zone.js": "~0.13.0"
   },
