@@ -1,0 +1,3 @@
+[submodule "Crickin"]
+	path = Crickin
+	url = https://github.com/muhdsalm/Crickin.git
