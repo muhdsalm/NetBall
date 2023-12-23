@@ -13,6 +13,8 @@ import { PlayerSelect8Component } from './player-select/player-select-8.componen
 import { PlayComponent } from './play/play.component';
 import { TeamNameComponent } from './team-name/team-name.component';
 import { BattingTeamComponent } from './batting-team/batting-team.component';
+import { OversComponent } from './overs/overs.component';
+import { FormsModule } from '@angular/forms'
 
 export const routerConfig = [
   {
@@ -49,14 +51,18 @@ export const routerConfig = [
     path: "batting-team",
     component: BattingTeamComponent
   },
+  {
+    path: "overs",
+    component: OversComponent
+  }
   
 ];
 
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, NativeScriptRouterModule, NativeScriptRouterModule.forRoot(routerConfig)],
-  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, FirstScreenComponent, PlayersNames6Component, PlayersNames8Component, PlayerSelect6Component, PlayerSelect8Component, PlayComponent, TeamNameComponent, BattingTeamComponent],
+  imports: [NativeScriptModule, NativeScriptRouterModule, NativeScriptRouterModule.forRoot(routerConfig), FormsModule],
+  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, FirstScreenComponent, PlayersNames6Component, PlayersNames8Component, PlayerSelect6Component, PlayerSelect8Component, PlayComponent, TeamNameComponent, BattingTeamComponent, OversComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })
