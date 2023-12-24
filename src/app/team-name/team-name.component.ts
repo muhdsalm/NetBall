@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { PropertyChangeData } from '@nativescript/core'
 import { GameService } from '../game/game.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'team-name',
@@ -11,7 +12,7 @@ export class TeamNameComponent implements AfterViewInit{
   @ViewChild('team1') team1Ref: ElementRef
   @ViewChild('team2') team2Ref: ElementRef
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private router: Router) {}
 
   ngAfterViewInit(): void {
     this.team1Ref.nativeElement.text = this.gameService.team1Name
@@ -25,6 +26,18 @@ export class TeamNameComponent implements AfterViewInit{
   changeTeam2Name() {
     this.gameService.team2Name = this.team2Ref.nativeElement.text
     console.log(this.team2Ref.nativeElement.text)
+  }
+
+  changeToPlayerNames() {
+
+    
+
+    if (this.gameService.overs % 6 == 0) {
+      this.router.navigateByUrl("/players-names/6")
+    }
+    else {
+      this.router.navigateByUrl("/players-names/8")
+    }
   }
   
 }
