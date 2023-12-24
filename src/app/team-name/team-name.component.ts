@@ -30,7 +30,14 @@ export class TeamNameComponent implements AfterViewInit{
 
   changeToPlayerNames() {
 
-    
+    console.log(this.team1Ref.nativeElement.text)
+
+    if (this.team1Ref.nativeElement.text == undefined || 
+        this.team2Ref.nativeElement.text == undefined || 
+        this.team1Ref.nativeElement.text == "" || 
+        this.team2Ref.nativeElement.text == "") {
+      return
+    }
 
     if (this.gameService.overs % 6 == 0) {
       this.router.navigateByUrl("/players-names/6")

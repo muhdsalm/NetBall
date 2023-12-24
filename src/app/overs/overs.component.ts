@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { GameService } from '../game/game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'overs',
@@ -14,7 +15,7 @@ export class OversComponent implements AfterViewInit {
   @ViewChild("12") over12: ElementRef
   @ViewChild("16") over16: ElementRef
 
-  constructor(private gameservice: GameService) {}
+  constructor(private gameservice: GameService, private router: Router) {}
 
   
   ngAfterViewInit(): void {
@@ -72,6 +73,14 @@ export class OversComponent implements AfterViewInit {
     this.switchToNormal(this.over12)
     this.switchToNormal(this.over6)
     this.gameservice.overs = 16
+  }
+
+  moveToTeamNames() {
+    if (this.gameservice.overs == undefined) {
+      return
+    }
+
+    this.router.navigateByUrl("/team-name")
   }
 
 }

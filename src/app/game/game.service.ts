@@ -15,7 +15,7 @@ export class GameService {
   playerNamesTeam1: string[]
   playerNamesTeam2: string[]
 
-  overs: number = 6
+  overs: number
 
   battingTeam: boolean
 
