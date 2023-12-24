@@ -22,7 +22,7 @@ export class TeamNameComponent implements AfterViewInit{
     this.gameService.team1Name = this.team1Ref.nativeElement.text
     console.log(this.team1Ref.nativeElement.text)
   }
-  changeTeam2Name(data) {
+  changeTeam2Name() {
     this.gameService.team2Name = this.team2Ref.nativeElement.text
     console.log(this.team2Ref.nativeElement.text)
   }
