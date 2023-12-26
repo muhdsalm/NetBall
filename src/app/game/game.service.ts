@@ -12,16 +12,18 @@ export class GameService {
   team1Name: string
   team2Name: string
 
-  playerNamesTeam1: string[]
-  playerNamesTeam2: string[]
+  playerNamesTeam1: string[] = []
+  playerNamesTeam2: string[] = []
 
   overs: number
 
   battingTeam: boolean
 
-  batsmanNumber1: number
-  batsmanNumber2: number
+  batsmanNumber1Index: number
+  batsmanNumber2Index: number
   bowler: number
+
+  teamNumberOfPlayers = TeamNumber.One
 
 
   constructor() {}
@@ -47,7 +49,7 @@ export class GameService {
   }
 
   setBatsmen(batsmanNumber1: number, batsmanNumber2: number) {
-    this.batsmanNumber1 = batsmanNumber1, this.batsmanNumber2 = batsmanNumber2
+    this.batsmanNumber1Index = batsmanNumber1, this.batsmanNumber2Index = batsmanNumber2
   }
 
   setBowler(bowlerNumber: number) {
@@ -61,7 +63,7 @@ export class GameService {
     this.game.setPlayerNames(this.playerNamesTeam1, this.playerNamesTeam2)
     this.game.setBattingTeam(TeamNumber[this.battingTeam ? "One" : "Two"])
     this.game.setBowlingTeam(TeamNumber[!this.battingTeam ? "One" : "Two"])
-    this.game.selectPlayers(this.batsmanNumber1, this.batsmanNumber2, this.bowler)
+    this.game.selectPlayers(this.batsmanNumber1Index, this.batsmanNumber2Index, this.bowler)
   }
 
 
