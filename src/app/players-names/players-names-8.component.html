@@ -16,7 +16,7 @@
     </StackLayout>
   </ScrollView>
   <StackLayout orientation="horizontal" style="margin-bottom: 2%; margin-top: 2%; align-items: center; text-align: center; margin-left: 3%; margin-right: 2%; text-align: center; align-items: center; align-content: center; height: 20%;">
-    <Button text="Back" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%; margin-right: 0px;" [nsRouterLink]="['/team-name']"></Button>
+    <Button text="Back" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%; margin-right: 0px;" (tap)="prevScreen()"></Button>
     <Button text="Next" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%;" (tap)="nextScreen()"></Button>
   </StackLayout>
 </FlexBoxLayout>

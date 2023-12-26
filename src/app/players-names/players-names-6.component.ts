@@ -56,5 +56,23 @@ export class PlayersNames6Component {
     }
       
   }
+
+  prevScreen() {
+    [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6].forEach((v, i) => {
+      if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
+        this.gameService.playerNamesTeam1.push(v.nativeElement.text)
+      } else {
+        this.gameService.playerNamesTeam2.push(v.nativeElement.text)
+      }
+    });
+
+    if (this.gameService.teamNumberOfPlayers == TeamNumber.Two) {
+      this.gameService.teamNumberOfPlayers = TeamNumber.One
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigateByUrl('/players-names/6')});
+    } else {
+      this.router.navigateByUrl('/team-name')
+    }
+  }
   
 }
