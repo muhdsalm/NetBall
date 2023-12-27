@@ -82,6 +82,8 @@ export class PlayersNames6Component implements AfterViewInit {
       console.log("moving on")
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigateByUrl('/players-names/6')});
+    } else {
+      this.router.navigateByUrl('/player-select/6')
     }
       
   }
