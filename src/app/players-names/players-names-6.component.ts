@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GameService } from '../game/game.service';
 import { Router } from '@angular/router';
 import { TeamNumber } from '../../../Crickin/game';
@@ -7,7 +7,7 @@ import { TeamNumber } from '../../../Crickin/game';
   selector: 'players-names-6',
   templateUrl: './players-names-6.component.html',
 })
-export class PlayersNames6Component {
+export class PlayersNames6Component implements AfterViewInit {
   
   teamNumberAsString: string
 
@@ -20,6 +20,25 @@ export class PlayersNames6Component {
 
   constructor(private gameService: GameService, private router: Router) {
     this.teamNumberAsString = (this.gameService.teamNumberOfPlayers + 1).toString()
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.gameService.playerNamesTeam1)
+    if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
+      if (this.gameService.playerNamesTeam1.length != 0) {
+        [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6].forEach((v, i) => {
+          console.log(this.gameService.playerNamesTeam1[i])
+          v.nativeElement.text = this.gameService.playerNamesTeam1[i]
+        })
+      }
+    } else {
+      if (this.gameService.playerNamesTeam1.length != 0) {
+        [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6].forEach((v, i) => {
+          console.log(this.gameService.playerNamesTeam2[i])
+          v.nativeElement.text = this.gameService.playerNamesTeam2[i]
+        })
+      }
+    }
   }
 
   nextScreen() {
@@ -39,6 +58,16 @@ export class PlayersNames6Component {
     }
 
     [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6].forEach((v, i) => {
+
+      if (this.gameService.playerNamesTeam1.length != 0) {
+        if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
+          this.gameService.playerNamesTeam1[i] = v.nativeElement.text
+        } else {
+          this.gameService.playerNamesTeam2[i] = v.nativeElement.text
+        }
+        return
+      }
+
       if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
         this.gameService.playerNamesTeam1.push(v.nativeElement.text)
       } else {
@@ -59,6 +88,16 @@ export class PlayersNames6Component {
 
   prevScreen() {
     [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6].forEach((v, i) => {
+
+      if (this.gameService.playerNamesTeam1.length != 0) {
+        if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
+          this.gameService.playerNamesTeam1[i] = v.nativeElement.text
+        } else {
+          this.gameService.playerNamesTeam2[i] = v.nativeElement.text
+        }
+        return
+      }
+
       if (this.gameService.teamNumberOfPlayers == TeamNumber.One) {
         this.gameService.playerNamesTeam1.push(v.nativeElement.text)
       } else {
