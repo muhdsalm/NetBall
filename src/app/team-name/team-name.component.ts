@@ -19,16 +19,13 @@ export class TeamNameComponent implements AfterViewInit{
     this.team2Ref.nativeElement.text = this.gameService.team2Name
   }
 
-  changeTeam1Name() {
+  changeToPlayerNames() {
+
     this.gameService.team1Name = this.team1Ref.nativeElement.text
     console.log(this.team1Ref.nativeElement.text)
-  }
-  changeTeam2Name() {
+
     this.gameService.team2Name = this.team2Ref.nativeElement.text
     console.log(this.team2Ref.nativeElement.text)
-  }
-
-  changeToPlayerNames() {
 
     console.log(this.team1Ref.nativeElement.text)
 
@@ -45,6 +42,18 @@ export class TeamNameComponent implements AfterViewInit{
     else {
       this.router.navigateByUrl("/players-names/8")
     }
+  }
+
+  prevScreen() {
+
+    this.gameService.team1Name = this.team1Ref.nativeElement.text
+    console.log(this.team1Ref.nativeElement.text)
+
+    this.gameService.team2Name = this.team2Ref.nativeElement.text
+    console.log(this.team2Ref.nativeElement.text)
+
+    this.router.navigateByUrl("/overs")
+
   }
   
 }
