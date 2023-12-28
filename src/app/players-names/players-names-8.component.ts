@@ -83,9 +83,9 @@ export class PlayersNames8Component implements AfterViewInit {
       this.gameService.teamNumberOfPlayers = TeamNumber.Two
       console.log("moving on")
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigateByUrl('/players-names/8')});
+        this.router.navigateByUrl('/batting-team')});
     } else {
-      this.router.navigateByUrl('/player-select/8')
+      this.router.navigateByUrl('/batting-team')
     }
       
   }
