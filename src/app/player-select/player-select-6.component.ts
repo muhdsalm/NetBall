@@ -77,7 +77,7 @@ export class PlayerSelect6Component implements AfterViewInit {
     this.gameService.batsmanNumber1Index = this.selectedPlayers[0]
     this.gameService.batsmanNumber2Index = this.selectedPlayers[1]
 
-    this.router.navigateByUrl('/play')
+    this.router.navigateByUrl('/player-select-bowling/6')
   }
 
   prevScreen() {

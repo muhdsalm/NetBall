@@ -15,6 +15,8 @@ import { TeamNameComponent } from './team-name/team-name.component';
 import { BattingTeamComponent } from './batting-team/batting-team.component';
 import { OversComponent } from './overs/overs.component';
 import { FormsModule } from '@angular/forms'
+import { PlayerSelectBowling6Component } from './player-select-bowling/player-select-6.component';
+import { PlayerSelectBowling8Component } from './player-select-bowling/player-select-8.component';
 
 export const routerConfig = [
   {
@@ -40,6 +42,13 @@ export const routerConfig = [
     ]
   },
   {
+    path: "player-select-bowling",
+    children: [
+      { path: "6", component: PlayerSelectBowling6Component },
+      { path: "8", component: PlayerSelectBowling8Component }
+    ]
+  },
+  {
     path: "play",
     component: PlayComponent
   },
@@ -62,7 +71,7 @@ export const routerConfig = [
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, NativeScriptRouterModule, NativeScriptRouterModule.forRoot(routerConfig), FormsModule],
-  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, FirstScreenComponent, PlayersNames6Component, PlayersNames8Component, PlayerSelect6Component, PlayerSelect8Component, PlayComponent, TeamNameComponent, BattingTeamComponent, OversComponent],
+  declarations: [AppComponent, ItemsComponent, ItemDetailComponent, FirstScreenComponent, PlayersNames6Component, PlayersNames8Component, PlayerSelect6Component, PlayerSelect8Component, PlayComponent, TeamNameComponent, BattingTeamComponent, OversComponent, PlayerSelectBowling6Component, PlayerSelectBowling8Component],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
 })
