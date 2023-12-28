@@ -5,18 +5,16 @@
 </StackLayout>
 <ScrollView style="height: 70%;">
   <StackLayout>
-    <Button text="Player 1 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 2 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 3 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 4 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 5 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 6 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 7 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
-    <Button text="Player 8 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #dde4d7ff; color: #734b34ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;"></Button>
+    <Button #p1 text="Player 1 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(0)"></Button>
+    <Button #p2 text="Player 2 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(1)"></Button>
+    <Button #p3 text="Player 3 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(2)"></Button>
+    <Button #p4 text="Player 4 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(3)"></Button>
+    <Button #p5 text="Player 5 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(4)"></Button>
+    <Button #p6 text="Player 6 Name" style="margin-right: 7%; margin-left: 7%; height: 170px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 15%; font-size: 30pt; font-family: 'Montserrat', 'Montserrat-Regular'; font-weight: 400;" (tap)="playerSelected(5)"></Button>
   </StackLayout>
 </ScrollView>
   <StackLayout orientation="horizontal" style="margin-bottom: 2%; margin-top: 2%; align-items: center; text-align: center; margin-left: 3%; margin-right: 2%; height: 10%;">
-    <Button text="Back" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%; margin-right: 0px;" [nsRouterLink]="['/batting-team']"></Button>
-    <Button text="Next" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%;" [nsRouterLink]="['/play']"></Button>
+    <Button text="Back" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%; margin-right: 0px;" (tap)="prevScreen()"></Button>
+    <Button text="Next" style="height: 120px; background-color: #734b34ff; color: #dde4d7ff;  border-radius: 10%; font-size: 20pt; font-family: 'Montserrat', 'Montserrat-Bold'; font-weight: 700; width: 45%;" (tap)="nextScreen()"></Button>
   </StackLayout>
 </FlexBoxLayout>

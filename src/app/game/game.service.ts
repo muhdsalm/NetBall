@@ -17,7 +17,7 @@ export class GameService {
 
   overs: number
 
-  battingTeam: boolean
+  battingTeam: boolean // true = team2, false = team1
 
   batsmanNumber1Index: number
   batsmanNumber2Index: number
