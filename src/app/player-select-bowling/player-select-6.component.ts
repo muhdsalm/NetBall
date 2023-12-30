@@ -19,7 +19,7 @@ export class PlayerSelectBowling6Component implements AfterViewInit {
   playerButtonsList: ElementRef[] = []
 
   constructor(private gameService: GameService, private router: Router) {
-    if (gameService.battingTeam) {
+    if (!gameService.battingTeam) {
       this.playerNames = gameService.playerNamesTeam2
     } else {
       this.playerNames = gameService.playerNamesTeam1
@@ -31,6 +31,7 @@ export class PlayerSelectBowling6Component implements AfterViewInit {
 
     this.selectedPlayer = this.gameService.bowler
     console.log(this.selectedPlayer)
+    console.log(this.gameService.battingTeam)
 
     for (var i = 0; i < this.playerButtonsList.length; i++) {
       this.playerButtonsList[i].nativeElement.text = this.playerNames[i]
@@ -46,11 +47,11 @@ export class PlayerSelectBowling6Component implements AfterViewInit {
 
     for (var i = 0; i < this.playerButtonsList.length; i++) {
       if (i == index) {
-        this.playerButtonsList[i].nativeElement.backgroundColor = '#dde4d7ff'
-        this.playerButtonsList[index].nativeElement.style.color = '#734b34ff'
+        this.playerButtonsList[i].nativeElement.style.backgroundColor = '#dde4d7ff'
+        this.playerButtonsList[i].nativeElement.style.color = '#734b34ff'
       } else {
-        this.playerButtonsList[i].nativeElement.backgroundColor = '#734b34ff'
-        this.playerButtonsList[index].nativeElement.style.color = '#dde4d7ff'
+        this.playerButtonsList[i].nativeElement.style.backgroundColor = '#734b34ff'
+        this.playerButtonsList[i].nativeElement.style.color = '#dde4d7ff'
       }
     }
 

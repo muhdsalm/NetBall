@@ -20,6 +20,7 @@ export class BattingTeamComponent implements AfterViewInit{
     this.team1Name = gameService.team1Name
     this.team2Name = gameService.team2Name
     this.battingTeam = gameService.battingTeam as any as TeamNumber
+    console.log(gameService.battingTeam)
   }
 
   ngAfterViewInit(): void {

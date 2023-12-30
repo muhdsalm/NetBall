@@ -45,7 +45,8 @@ export class GameService {
   }
 
   setBattingTeam(team: TeamNumber) {
-    this.battingTeam = !!team
+    this.battingTeam = team as any
+    console.log(team as any)
   }
 
   setBatsmen(batsmanNumber1: number, batsmanNumber2: number) {
