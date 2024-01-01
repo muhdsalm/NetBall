@@ -50,6 +50,7 @@ export class PlayComponent implements AfterViewInit{
     this.currentColumn = column
 
     var descriptionText = ""
+    console.log(this.gameService.batsmanNumber1Index)
     descriptionText += row ? this.gameService.getGame().getBattingTeam().getPlayer(this.gameService.batsmanNumber2Index).getName() : this.gameService.getGame().getBattingTeam().getPlayer(this.gameService.batsmanNumber1Index).getName()
     descriptionText += ", ball " + (column + 1)
     this.descriptionLabel.nativeElement.text = descriptionText
@@ -64,6 +65,26 @@ export class PlayComponent implements AfterViewInit{
     this.nextButton.nativeElement.isEnabled = true
     this.backButton.nativeElement.style.backgroundColor = '#909090'
     this.nextButton.nativeElement.style.backgroundColor = '#734b34ff'
+
+    if (!this.gameService.firstOver) {
+      if (this.gameService.battingTeam) {
+        console.log(this.gameService.playerNumbersTeam2 + ", ", this.gameService.playerNumbersTeam2[this.gameService.batsmanNumber1Index])
+        if (this.gameService.batsmenChangeNeeded()) {
+          this.gameService.batsmanNumber1Index = this.gameService.playerNumbersTeam2[this.gameService.batsmanNumber1Index]
+          this.gameService.batsmanNumber2Index = this.gameService.playerNumbersTeam2[this.gameService.batsmanNumber2Index]
+        }
+        this.gameService.bowler = this.gameService.playerNumbersTeam1[this.gameService.bowler]
+      } else {
+        console.log(this.gameService.playerNumbersTeam1 + ", ", this.gameService.playerNumbersTeam1[this.gameService.batsmanNumber1Index])
+        if (this.gameService.batsmenChangeNeeded()) {
+          this.gameService.batsmanNumber1Index = this.gameService.playerNumbersTeam1[this.gameService.batsmanNumber1Index]
+          this.gameService.batsmanNumber2Index = this.gameService.playerNumbersTeam1[this.gameService.batsmanNumber2Index]
+        }
+        this.gameService.bowler = this.gameService.playerNumbersTeam2[this.gameService.bowler]
+      }
+    }
+
+    console.log(this.gameService.batsmanNumber1Index, this.gameService.batsmanNumber2Index)
 
     if (this.gameService.firstOver) {
       this.gameService.createGame()
@@ -85,6 +106,14 @@ export class PlayComponent implements AfterViewInit{
   }
 
   nextScreen() {
+
+    if (this.gameService.batsmenChangeNeeded()) {
+      this.gameService.batsmanNumber1Index = undefined
+      this.gameService.batsmanNumber2Index = undefined
+    }
+    this.gameService.bowler = undefined
+
+
     if (this.gameService.overs < 10) {
       console.log((this.gameService.getGame().getCurrentOverNumber() + 1) % 2)
       if ((this.gameService.getGame().getCurrentOverNumber() + 1) % 2 == 0) {
@@ -93,7 +122,7 @@ export class PlayComponent implements AfterViewInit{
         this.router.navigateByUrl("/player-select-bowling/" + (this.gameService.overs % 6 == 0 ? "6" : "8"))
       }
     } else {
-      if (this.gameService.getGame().getCurrentOverNumber() + 1 % 4 == 0) {
+      if ((this.gameService.getGame().getCurrentOverNumber() + 1) % 4 == 0) {
         this.router.navigateByUrl("/player-select/" + (this.gameService.overs % 6 == 0 ? "6" : "8"))
       } else {
         this.router.navigateByUrl("/player-select-bowling/" + (this.gameService.overs % 6 == 0 ? "6" : "8"))

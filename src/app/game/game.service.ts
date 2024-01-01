@@ -107,34 +107,68 @@ export class GameService {
 
     this.game.newOver(this.bowler, this.batsmanNumber1Index, this.batsmanNumber2Index)
 
-    if (this.battingTeam) {
-      this.playerNamesTeam1 = []
-      this.playerNumbersTeam1 = []
-      this.game.getRemainingBowlers().forEach((v, i) => {
-        this.playerNumbersTeam1.push(v[0])
-        this.playerNamesTeam1.push(v[1])
-      })
-
-      this.playerNumbersTeam2 = []
-      this.playerNamesTeam2 = []
-      this.game.getRemainingBatsmen().forEach((v, _) => {
-        this.playerNumbersTeam2.push(v[0])
-        this.playerNamesTeam2.push(v[1])
-      })
+    if (this.game.getCurrentOverNumber() == 0 && !this.firstOver) {
+      if (this.battingTeam) {
+        this.playerNamesTeam1 = []
+        this.playerNumbersTeam1 = []
+        this.game.getRemainingBowlers().forEach((v, i) => {
+          this.playerNumbersTeam1.push(v[0])
+          this.playerNamesTeam1.push(v[1])
+        })
+  
+        this.playerNumbersTeam2 = []
+        this.playerNamesTeam2 = []
+        this.game.getRemainingBatsmen().forEach((v, _) => {
+          this.playerNumbersTeam2.push(v[0])
+          this.playerNamesTeam2.push(v[1])
+        })
+      } else {
+        this.playerNamesTeam1 = []
+        this.playerNumbersTeam1 = []
+        this.game.getRemainingBatsmen().forEach((v, i) => {
+          this.playerNumbersTeam1.push(v[0])
+          this.playerNamesTeam1.push(v[1])
+        })
+  
+        this.playerNumbersTeam2 = []
+        this.playerNamesTeam2 = []
+        this.game.getRemainingBowlers().forEach((v, _) => {
+          this.playerNumbersTeam2.push(v[0])
+          this.playerNamesTeam2.push(v[1])
+        })
+      }
     } else {
-      this.playerNamesTeam1 = []
       this.playerNumbersTeam1 = []
-      this.game.getRemainingBatsmen().forEach((v, i) => {
+      this.playerNamesTeam1 = []
+    
+      this.playerNumbersTeam2 = []
+      this.playerNamesTeam2 = []
+
+      this.game.getRemainingPlayers(TeamNumber.One).forEach((v, _) => {
         this.playerNumbersTeam1.push(v[0])
         this.playerNamesTeam1.push(v[1])
       })
-
-      this.playerNumbersTeam2 = []
-      this.playerNamesTeam2 = []
-      this.game.getRemainingBowlers().forEach((v, _) => {
+      this.game.getRemainingPlayers(TeamNumber.Two).forEach((v, _) => {
         this.playerNumbersTeam2.push(v[0])
         this.playerNamesTeam2.push(v[1])
       })
+    }
+  }
+
+  batsmenChangeNeeded(): boolean{
+    if (this.overs < 10) {
+      console.log((this.getGame().getCurrentOverNumber() + 1) % 2)
+      if ((this.getGame().getCurrentOverNumber() + 1) % 2 == 0) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      if ((this.getGame().getCurrentOverNumber() + 1) % 4 == 0) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 

@@ -36,6 +36,11 @@ export class PlayerSelectBowling8Component implements AfterViewInit {
 
     for (var i = 0; i < this.playerButtonsList.length; i++) {
       this.playerButtonsList[i].nativeElement.text = this.playerNames[i]
+      console.log('playerbuttonlisttext', this.playerButtonsList[i].nativeElement.text)
+      if (this.playerButtonsList[i].nativeElement.text == undefined) {
+        this.playerButtonsList[i].nativeElement.style.backgroundColor = 'transparent'
+        this.playerButtonsList[i].nativeElement.isEnabled = false
+      }
       if (this.selectedPlayer == i) {
         this.playerButtonsList[i].nativeElement.style.backgroundColor = '#dde4d7ff'
         this.playerButtonsList[i].nativeElement.style.color = '#734b34ff'
@@ -50,7 +55,7 @@ export class PlayerSelectBowling8Component implements AfterViewInit {
       if (i == index) {
         this.playerButtonsList[i].nativeElement.style.backgroundColor = '#dde4d7ff'
         this.playerButtonsList[i].nativeElement.style.color = '#734b34ff'
-      } else {
+      } else if (this.playerButtonsList[i].nativeElement.text != undefined){
         this.playerButtonsList[i].nativeElement.style.backgroundColor = '#734b34ff'
         this.playerButtonsList[i].nativeElement.style.color = '#dde4d7ff'
       }
@@ -74,7 +79,11 @@ export class PlayerSelectBowling8Component implements AfterViewInit {
   prevScreen() {
     this.gameService.bowler = this.selectedPlayer
 
-    this.router.navigateByUrl('/player-select/6')
+    if (this.gameService.batsmenChangeNeeded()) {
+      this.router.navigateByUrl("/player-select/8")
+    } else {
+      return
+    }
   }
 
 }

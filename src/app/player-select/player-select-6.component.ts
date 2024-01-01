@@ -33,8 +33,13 @@ export class PlayerSelect6Component implements AfterViewInit {
     console.log(this.gameService.batsmanNumber1Index, this.gameService.batsmanNumber2Index)
     console.log(this.selectedPlayers)
 
-    for (var i = 0; i < this.playerButtonsList.length; i++) {
+    for (var i = 0; i < this.playerButtonsList.length; i++) { 
       this.playerButtonsList[i].nativeElement.text = this.playerNames[i]
+      console.log('playerbuttonlisttext', this.playerButtonsList[i].nativeElement.text)
+      if (this.playerButtonsList[i].nativeElement.text == undefined) {
+        this.playerButtonsList[i].nativeElement.style.backgroundColor = 'transparent'
+        this.playerButtonsList[i].nativeElement.isEnabled = false
+      }
       if (this.selectedPlayers.includes(i)) {
         this.playerButtonsList[i].nativeElement.style.backgroundColor = '#dde4d7ff'
         this.playerButtonsList[i].nativeElement.style.color = '#734b34ff'
@@ -83,6 +88,10 @@ export class PlayerSelect6Component implements AfterViewInit {
   prevScreen() {
     this.gameService.batsmanNumber1Index = this.selectedPlayers[0]
     this.gameService.batsmanNumber2Index = this.selectedPlayers[1]
+
+    if (!this.gameService.firstOver) {
+      return
+    }
 
     this.router.navigateByUrl('/batting-team')
   }
