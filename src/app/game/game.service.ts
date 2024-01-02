@@ -37,9 +37,34 @@ export class GameService {
   teamNumberOfPlayers = TeamNumber.One
 
   firstOver = true
+  secondInnings = false
 
 
   constructor() {}
+
+  restart() {
+    this.game = undefined
+    this.team1Name = undefined
+    this.team2Name = undefined
+
+    this.playerNamesTeam1 = []
+    this.playerNamesTeam2 = []
+    this.playerNumbersTeam1 = []
+    this.playerNumbersTeam2 = []
+
+    this.overs = undefined
+
+    this.battingTeam = undefined
+
+    this.batsmanNumber1Index = undefined
+    this.batsmanNumber2Index = undefined
+    this.bowler = undefined
+
+    this.teamNumberOfPlayers = TeamNumber.One
+
+    this.firstOver = true
+    this.secondInnings = false
+  }
 
   setTeamNames(team1: string, team2: string) {
     this.team1Name, this.team2Name = team1, team2
@@ -107,7 +132,36 @@ export class GameService {
 
     this.game.newOver(this.bowler, this.batsmanNumber1Index, this.batsmanNumber2Index)
 
-    if (this.game.getCurrentOverNumber() == 0 && !this.firstOver) {
+    console.log("current over number:",this.game.getCurrentOverNumber())
+    if (this.game.getCurrentOverNumber() == 5 && !this.secondInnings) {
+      this.secondInnings = true
+
+      this.playerNamesTeam1 = []
+      this.playerNumbersTeam1 = []
+      this.playerNamesTeam2 = []
+      this.playerNumbersTeam2 = []
+
+      if (this.battingTeam) {
+        for (var i = 0; i < this.overs; i++) {
+          this.playerNumbersTeam1.push(i)
+          this.playerNumbersTeam2.push(i)
+
+          this.playerNamesTeam1.push(this.game.getBattingTeam().getPlayer(i).getName())
+          this.playerNamesTeam2.push(this.game.getBowlingTeam().getPlayer(i).getName())
+        }
+      } else {
+        for (var i = 0; i < this.overs; i++) {
+          this.playerNumbersTeam1.push(i)
+          this.playerNumbersTeam2.push(i)
+
+          this.playerNamesTeam1.push(this.game.getBowlingTeam().getPlayer(i).getName())
+          this.playerNamesTeam2.push(this.game.getBattingTeam().getPlayer(i).getName())
+        }
+      }
+      return
+    }
+    if (this.secondInnings) {
+      console.log('switching')
       if (this.battingTeam) {
         this.playerNamesTeam1 = []
         this.playerNumbersTeam1 = []
@@ -122,6 +176,7 @@ export class GameService {
           this.playerNumbersTeam2.push(v[0])
           this.playerNamesTeam2.push(v[1])
         })
+        console.log(this.game.getRemainingBatsmen(), this.game.getRemainingBowlers())
       } else {
         this.playerNamesTeam1 = []
         this.playerNumbersTeam1 = []

@@ -35,17 +35,25 @@ export class PlayerSelect8Component implements AfterViewInit {
     console.log(this.gameService.batsmanNumber1Index, this.gameService.batsmanNumber2Index)
     console.log(this.selectedPlayers)
 
+    var allUndefined = true
+
     for (var i = 0; i < this.playerButtonsList.length; i++) {
       this.playerButtonsList[i].nativeElement.text = this.playerNames[i]
       console.log('playerbuttonlisttext', this.playerButtonsList[i].nativeElement.text)
       if (this.playerButtonsList[i].nativeElement.text == undefined) {
         this.playerButtonsList[i].nativeElement.style.backgroundColor = 'transparent'
         this.playerButtonsList[i].nativeElement.isEnabled = false
+      } else {
+        allUndefined = false
       }
       if (this.selectedPlayers.includes(i)) {
         this.playerButtonsList[i].nativeElement.style.backgroundColor = '#dde4d7ff'
         this.playerButtonsList[i].nativeElement.style.color = '#734b34ff'
       }
+    }
+    if (allUndefined) {
+      this.gameService.restart()
+      this.router.navigateByUrl('/first-screen')
     }
 
   }

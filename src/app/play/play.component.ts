@@ -115,7 +115,7 @@ export class PlayComponent implements AfterViewInit{
 
 
     if (this.gameService.overs < 10) {
-      console.log((this.gameService.getGame().getCurrentOverNumber() + 1) % 2)
+      console.log("shud bat",((this.gameService.getGame().getCurrentOverNumber() + 1) % 2))
       if ((this.gameService.getGame().getCurrentOverNumber() + 1) % 2 == 0) {
         this.router.navigateByUrl("/player-select/" + (this.gameService.overs % 6 == 0 ? "6" : "8"))
       } else {
